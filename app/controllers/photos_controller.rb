@@ -19,6 +19,18 @@ class PhotosController < ApplicationController
     p.image = params.fetch("image")
     p.owner_id = params.fetch("id")
     p.save
+    redirect_to("/photos/#{p.id}")
+  end
+
+  def delete
+    the_id = params.fetch("path_id")
+
+    matching_records = Photo.where({ :id => the_id })
+
+    the_photo = matching_records.at(0)
+
+    the_photo.destroy
+
     redirect_to("/photos")
   end
 
