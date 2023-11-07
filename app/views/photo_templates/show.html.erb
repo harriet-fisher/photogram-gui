@@ -5,8 +5,9 @@
   <dd><img src="<%= @the_photo.image %>"></dd>
 
   <dt>Caption</dt>
-  <dd><%= @the_photo.caption %></dd>
-
+  <div>
+    <dd><%= @the_photo.caption %></dd>
+  </div>
   <dt>Owner</dt>
   <dd><%= @the_photo.poster.username %></dd>
 
@@ -14,7 +15,17 @@
   <dd><%= @the_photo.created_at %></dd>
 
   <dt>Edit photo</dt>
-  <dd><%= @the_photo.caption %></dd>
+  <dd>
+    <form action="/edit_photo/<%= @the_photo.id %>" method="post">
+      <label for="img_field">Image</label>
+      <input id="img_field" type="text" name="image" value="<%= @the_photo.image %>">
+      <label for="cap_field">Caption</label>
+      <textarea id="cap_field" type="text" name="caption"><%= @the_photo.caption %></textarea>
+      <button>
+        Update photo
+      </button>
+    </form>
+  </dd>
 
   <dt>Delete photo</dt>
   <dd><a href="/delete_photo/<%= @the_photo.id %>">Delete this photo</a></dd>
@@ -32,7 +43,7 @@
   <% @matching_comments.each do |a_comment| %>
     <tr>
       <td>
-        <%= User.where({id => a_comment.author_id}).first.username %>
+        <%= User.where({:id => a_comment.author_id}).first.username %>
       </td>
       <td>
         <%= a_comment.body %>

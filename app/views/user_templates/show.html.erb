@@ -2,15 +2,21 @@
 
 <dl>
   <dt>ID</dt>
-  
-  <dt><%= @the_user.id %></dt>
+  <dd><%= @the_user.id %></dd>
 
   <dt>Edit user</dt>
-
-  <dt>ID</dt>
+  <dd>
+    <form action="/update_user/<%= @the_user.username %>" method="post">
+      <label for="name_field">Username</label>
+      <input id="name_field" type="text" name="username" value="<%= @the_user.username %>">
+      <button>
+        Update user
+      </button>
+    </form>
+  </dd>
 </dl>
 
-<h2>Own photos (<%= @the_user.own_photos %>)</h2>
+<h2>Own photos (<%= @the_user.own_photos.count %>)</h2>
 
 <table border="1">
   <tr>
@@ -22,16 +28,20 @@
   </tr>
 
   <% @the_user.own_photos.each do |a_photo| %>
-  <tr>
-    <td>
-    <img src="<%a_photo.image%>">
-    </td>
-    <td>
-      <%a_photo.poster.username%>
-    </td>
-    <td><%a_photo.caption%></td>
-    <td><%a_photo.created_at%></td>
-    <td></td>
-  </tr>
-
+    <tr>
+      <td>
+        <img src="<%= a_photo.image %>">
+      </td>
+      <td>
+        <%= a_photo.poster.username %>
+      </td>
+      <td>
+        <%= a_photo.caption %>
+      </td>
+      <td>
+        <%= a_photo.created_at %>
+      </td>
+      <td></td>
+    </tr>
+  <% end %>
 </table>

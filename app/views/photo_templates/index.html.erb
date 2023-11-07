@@ -1,5 +1,19 @@
 <h1>List of photos</h1>
 
+<form action="/add_photo" method="post">
+  <label for="img_field">Image</label>
+  <input id="img_field" type="text" name="image" placeholder="Enter a URL for the image">
+  <label for="cap_field">Caption</label>
+  <textarea id="cap_field" type="text" name="caption" placeholder="Enter a caption for the photo..."></textarea>
+  <label for="id_field">Owner ID</label>
+  <input id="id_field" type="text" name="id" placeholder="Enter an ID of a User">
+  <button>
+    Add photo
+  </button>
+</form>
+
+<hr>
+
 <table border = "1">
   <tr>
     <th>Image</th>

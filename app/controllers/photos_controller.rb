@@ -12,4 +12,23 @@ class PhotosController < ApplicationController
     @matching_comments = Comment.where({:photo_id => this_id})
     render ({:template => "photo_templates/show"})
   end
+
+  def add
+    p = Photo.new
+    p.caption = params.fetch("caption")
+    p.image = params.fetch("image")
+    p.owner_id = params.fetch("id")
+    p.save
+    redirect_to("/photos")
+  end
+
+  def edit
+    photo_id = params.fetch("path_id")
+    matching_photos = Photo.where({:id => photo_id})
+    the_photo = matching_photos.first
+    the_photo.image = params.fetch("image")
+    the_photo.caption = params.fetch("caption")
+    the_photo.save
+    redirect_to("/photos/#{photo_id}")
+  end
 end
