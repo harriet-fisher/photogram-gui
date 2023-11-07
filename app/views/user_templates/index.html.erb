@@ -1,6 +1,6 @@
 <h1>List of users</h1>
 
-<table border="1">
+<table border = "1">
   <tr>
     <th>
     ID
@@ -21,7 +21,9 @@
       <%= a_user.username %>
     </td>
     <td>
-      Show Details
+      <a href="/users/<%= a_user.username %>">
+      Show Details</a>
     </td>
-
+  </tr>
+<% end %>
 </table>
