@@ -16,11 +16,11 @@
 
   <dt>Edit photo</dt>
   <dd>
-    <form action="/edit_photo/<%= @the_photo.id %>" method="post">
+    <form action="/edit_photo/<%= @the_photo.id %>" method="POST">
       <label for="img_field">Image</label>
-      <input id="img_field" type="text" name="image" value="<%= @the_photo.image %>">
+      <input id="img_field" type="text" name="query_image" value="<%= @the_photo.image %>">
       <label for="cap_field">Caption</label>
-      <textarea id="cap_field" type="text" name="caption"><%= @the_photo.caption %></textarea>
+      <textarea id="cap_field" type="text" name="query_caption"><%= @the_photo.caption %></textarea>
       <button>
         Update photo
       </button>
@@ -33,7 +33,7 @@
 
 <h2>Comments</h2>
 
-<table border="1">
+<table border="0">
   <tr>
     <th>Commentor</th>
     <th>Comment</th>
@@ -56,13 +56,13 @@
 </table>
 
 <h3>Add a new comment</h3>
-<form action="/add_comment/<%= @the_photo.id %>" method="post">
-      <label for="img_field">Photo ID</label>
-      <input id="img_field" type="text" name="photo" value="<%= @the_photo.id %>">
+<form action="/add_comment" method="post">
+      <label for="photo_field">Photo ID</label>
+      <input id="photo_field" type="text" name="photo" value="<%= @the_photo.id %>">
       <label for="author_field">Author ID</label>
       <input id="author_field" type="text" name="author" placeholder="Enter your author ID">
-      <label for="cap_field">Comment</label>
-      <textarea id="cap_field" type="text" name="body" placeholder="Enter a comment..."></textarea>
+      <label for="body_field">Comment</label>
+      <textarea id="body_field" type="text" name="body" placeholder="Enter a comment..."></textarea>
       <button>
         Add comment
       </button>

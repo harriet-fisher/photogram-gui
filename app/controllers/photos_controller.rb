@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
     this_id = params.fetch("path_id")
     matching_photo = Photo.where({:id => this_id})
     @the_photo = matching_photo.first
-    @matching_comments = Comment.where({:photo_id => this_id})
+    @matching_comments = @the_photo.comments
     render ({:template => "photo_templates/show"})
   end
 
@@ -35,12 +35,12 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    photo_id = params.fetch("path_id")
+    photo_id = params.fetch("edit_id")
     matching_photos = Photo.where({:id => photo_id})
     the_photo = matching_photos.first
-    the_photo.image = params.fetch("image")
-    the_photo.caption = params.fetch("caption")
+    the_photo.image = params.fetch("query_image")
+    the_photo.caption = params.fetch("query_caption")
     the_photo.save
-    redirect_to("/photos/#{photo_id}")
+    redirect_to("/photos/#{the_photo.id}")
   end
 end
